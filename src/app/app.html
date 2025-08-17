@@ -1,26 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"> Smart-Sell Product App</a>
+  <a class="navbar-brand" href="#">Smart-Sell Product App</a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav">
+
       <li class="nav-item">
-        <a class="nav-link" routerLink="/products">Products</a>
+        <a class="nav-link" 
+           routerLink="/products" 
+           routerLinkActive="active">Products</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/add-product" *ngIf="authService.isLoggedIn()">Add Product</a>
+
+      <li class="nav-item" *ngIf="authService.isLoggedIn()">
+        <a class="nav-link" 
+           routerLink="/add-product" 
+           routerLinkActive="active">Add Product</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/register" *ngIf="!authService.isLoggedIn()">Register</a>
+
+      <li class="nav-item" *ngIf="!authService.isLoggedIn()">
+        <a class="nav-link" 
+           routerLink="/register" 
+           routerLinkActive="active">Register</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login" *ngIf="!authService.isLoggedIn()">Login</a>
+
+      <li class="nav-item" *ngIf="!authService.isLoggedIn()">
+        <a class="nav-link" 
+           routerLink="/login" 
+           routerLinkActive="active">Login</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="authService.logout(); router.navigate(['/login'])" *ngIf="authService.isLoggedIn()">Logout</a>
+
+      <li class="nav-item" *ngIf="authService.isLoggedIn()">
+        <a class="nav-link" 
+           (click)="authService.logout(); router.navigate(['/login'])">Logout</a>
       </li>
+
     </ul>
   </div>
 </nav>
+
 <div class="container mt-4">
-  
   <router-outlet></router-outlet>
 </div>
