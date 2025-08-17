@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Login</h2>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" class="form-control" formControlName="email" placeholder="Enter email">
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+          Valid email is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" class="form-control" formControlName="password" placeholder="Enter password">
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+          Password is required.
+        </div>
+      </div>
+      <div *ngIf="error" class="text-danger">{{ error }}</div>
+      <button type="submit" class="btn btn-primary mt-3" [disabled]="loginForm.invalid">Login</button>
+      <p class="mt-2">
+        Don't have an account? <a routerLink="/register">Register here</a>
+      </p>
+    </form>
+  </div>
+</div>

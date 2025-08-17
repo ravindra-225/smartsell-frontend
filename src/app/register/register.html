@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Register</h2>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" class="form-control" formControlName="name" placeholder="Enter name">
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="text-danger">
+          Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" class="form-control" formControlName="email" placeholder="Enter email">
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">
+          Valid email is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" class="form-control" formControlName="password" placeholder="Enter password">
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
+          Password must be at least 6 characters.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select id="role" class="form-control" formControlName="role">
+          <option value="SELLER">Seller</option>
+          <option value="BUYER">Buyer</option>
+          <option value="ADMIN">Admin</option>
+        </select>
+        <div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched" class="text-danger">
+          Role is required.
+        </div>
+      </div>
+      <div *ngIf="error" class="text-danger">{{ error }}</div>
+      <button type="submit" class="btn btn-primary mt-3" [disabled]="registerForm.invalid">Register</button>
+      <p class="mt-2">
+        Already have an account? <a routerLink="/login">Login here</a>
+      </p>
+    </form>
+  </div>
+</div>

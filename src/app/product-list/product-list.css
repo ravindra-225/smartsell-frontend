@@ -1,0 +1,52 @@
+/* Custom styles for product list */
+.card {
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  border-bottom: 1px solid #eee;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.text-success {
+  font-size: 1.1rem;
+}
+
+.card-footer {
+  padding: 1rem;
+}
+
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .row-cols-md-3 {
+    row: cols -1px;
+  }
+  .w-50 {
+    width: 100% !important;
+  }
+}

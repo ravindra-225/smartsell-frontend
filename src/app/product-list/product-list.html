@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Product List</h2>
+    <div class="d-flex justify-content-between align-items-center">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="mt-2">
+      <div class="input-group">
+        <input
+          class="form-control"
+          formControlName="keyword"
+          placeholder="Search products..."
+          aria-label="Search products"
+        />
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </form>
+    <button class="btn btn-success mt-2" routerLink="/add-product">Add Product</button>
+  </div>
+  </div>
+  <div class="card-body">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="alert alert-info">Loading products...</div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+    <!-- Empty State -->
+    <div *ngIf="products.length === 0 && !loading && !error" class="alert alert-warning">
+      No products found.
+    </div>
+
+   <div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="products.length > 0 && !loading && !error">
+      <div class="col" *ngFor="let product of products">
+        <div class="card h-100 shadow-sm">
+          <img [src]="'http://localhost:8080' + product.imageUrl" class="card-img-top" alt="{{ product.title }}" *ngIf="product.imageUrl" style="max-height: 200px; object-fit: contain;">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+             <p><strong>ID:</strong> {{ product.id || 'N/A' }}</p>
+            <p class="card-text">{{ product.description | slice:0:100 }}{{ product.description.length > 100 ? '...' : '' }}</p>
+            <p class="text-success fw-bold">{{ product.price | currency:'INR':'symbol' }}</p>
+            <p class="card-text"><strong>Location: </strong> {{ product.location }}</p>
+            <p class="card-text"><strong>Category: </strong> {{ product.category?.name }}</p>
+            <div class="mt-2">
+              <h6>Seller Details:</h6>
+              <p><strong>ID:</strong> {{ product.seller?.id || 'N/A' }}</p>
+              <p><strong>Name:</strong> {{ product.seller?.name || 'N/A' }}</p>
+              <p><strong>Email:</strong> {{ product.seller?.email || 'N/A' }}</p>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-0">
+            <button class="btn btn-outline-primary w-100" (click)=" product.id && viewProduct(product.id)">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

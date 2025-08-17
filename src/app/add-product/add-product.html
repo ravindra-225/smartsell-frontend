@@ -1,0 +1,137 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Add Product</h2>
+  </div>
+  <div class="card-body">
+    <form
+      [formGroup]="productForm"
+      (ngSubmit)="onSubmit()"
+      class="needs-validation"
+      novalidate
+      enctype="multipart/form-data"
+    >
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              id="title"
+              class="form-control"
+              formControlName="title"
+              placeholder="Enter product title"
+              [class.is-invalid]="productForm.get('title')?.invalid && productForm.get('title')?.touched"
+            />
+            <div
+              *ngIf="productForm.get('title')?.invalid && productForm.get('title')?.touched"
+              class="invalid-feedback">
+              Title is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              class="form-control"
+              formControlName="description"
+              placeholder="Enter description"
+            ></textarea>
+            <div
+              *ngIf="
+                productForm.get('description')?.invalid && productForm.get('description')?.touched
+              "
+              class="text-danger"
+            >
+              Description must be 2000 characters or less.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input
+            id="price"
+            type="number"
+            class="form-control"
+            formControlName="price"
+            placeholder="Enter price"
+          />
+          <div
+            *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+            class="text-danger"
+          >
+            Price must be greater than 0.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input
+            id="location"
+            class="form-control"
+            formControlName="location"
+            placeholder="Enter location"
+          />
+          <div
+            *ngIf="productForm.get('location')?.invalid && productForm.get('location')?.touched"
+            class="text-danger"
+          >
+            Location is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="image">Image *</label>
+          <input
+            id="image"
+            type="file"
+            class="form-control"
+            (change)="onImageChange($event)"
+            accept="image/*"
+            [class.is-invalid]="imageInvalid && imageTouched"
+          />
+          <div *ngIf="imageInvalid && imageTouched" class="invalid-feedback">
+            Please select a valid image file.
+          </div>
+          <div class="mt-2" *ngIf="imagePreview">
+            <img
+              [src]="imagePreview"
+              alt="Image Preview"
+              class="img-thumbnail"
+              style="max-width: 200px; max-height: 200px"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="categoryId">Category ID</label>
+         <select
+              id="categoryId"
+              class="form-control"
+              formControlName="categoryId"
+              [class.is-invalid]="productForm.get('categoryId')?.invalid && productForm.get('categoryId')?.touched"
+            >
+              <option value="">Select a category</option>
+              <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+              </option>
+            </select>
+          <div *ngIf="productForm.get('categoryId')?.invalid && productForm.get('categoryId')?.touched" class="invalid-feedback">
+              Category is required.
+            </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div *ngIf="error" class="text-danger">{{ error }}</div>
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="productForm.invalid">
+          Add Product
+        </button>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>
