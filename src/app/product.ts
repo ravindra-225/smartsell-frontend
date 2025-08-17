@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class ProductComponent {
-  private apiUrl = `${environment.apiUrl}/products`;
+  private apiUrl = `${environment.apiUrl}/api/products`;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -28,7 +28,7 @@ export class ProductComponent {
   }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${environment.apiUrl}/categories`, { headers: this.getHeaders() });
+    return this.http.get<Category[]>(`${environment.apiUrl}/api/categories`, { headers: this.getHeaders() });
   }
 
 addProductWithImage(formData: FormData): Observable<Product> {
