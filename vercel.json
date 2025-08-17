@@ -3,7 +3,8 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": { "buildCommand": "ng build --configuration production" }
     },
     {
       "src": "dist/smart-sell/**",
