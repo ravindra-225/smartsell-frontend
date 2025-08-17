@@ -10,7 +10,7 @@
       }
     },
     {
-      "src": "dist/smart-sell/**",
+      "src": "dist/smart-sell/browser/**",
       "use": "@vercel/static"
     }
   ],
