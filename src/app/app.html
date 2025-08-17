@@ -8,7 +8,7 @@
            routerLink="/products" 
            routerLinkActive="active">Products</a>
       </li>
-
+<router-outlet></router-outlet>
       <li class="nav-item" *ngIf="authService.isLoggedIn()">
         <a class="nav-link" 
            routerLink="/add-product" 
