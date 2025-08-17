@@ -4,13 +4,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category, Product } from './product.model';
 import { AuthService } from './auth.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductComponent {
-  private apiUrl = 'http://localhost:8080/api/products';
-
+ private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   private getHeaders(): HttpHeaders {
@@ -42,6 +42,6 @@ addProductWithImage(formData: FormData): Observable<Product> {
 }
 
   searchProducts(keyword: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/search?keyword=${keyword}`);
+    return this.http.get<Product[]>(`${this.apiUrl}/search?keyword=${keyword}`, { headers: this.getHeaders() });
   }
 }
