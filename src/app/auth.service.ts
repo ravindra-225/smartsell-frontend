@@ -8,17 +8,17 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}/api/auth`;
+  private apiUrl2 = `${environment.apiUrl}/api/auth`;
   private tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));
 
   constructor(private http: HttpClient) {}
 
   register(user: User): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user);
+    return this.http.post(`${this.apiUrl2}/register`, user);
   }
 
   login(authRequest: AuthRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, authRequest).pipe(
+    return this.http.post<AuthResponse>(`${this.apiUrl2}/login`, authRequest).pipe(
       tap(response => {
         console.log('Login response:', response);
         localStorage.setItem('token', response.token);
