@@ -3,11 +3,15 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build",
+      "use": "@vercel/node",
       "config": {
-        "distDir": "dist/smart-sell",
-        "buildCommand": "ng build --configuration production"
+        "buildCommand": "npm run build", 
+        "installCommand": "npm install"  
       }
+    },
+    {
+      "src": "dist/smart-sell/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [

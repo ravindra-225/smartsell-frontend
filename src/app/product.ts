@@ -10,7 +10,8 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class ProductComponent {
- private apiUrl = environment.apiUrl;
+  private apiUrl = `${environment.apiUrl}/products`;
+
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   private getHeaders(): HttpHeaders {
@@ -27,7 +28,7 @@ export class ProductComponent {
   }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>('http://localhost:8080/api/categories', { headers: this.getHeaders() });
+    return this.http.get<Category[]>(`${environment.apiUrl}/categories`, { headers: this.getHeaders() });
   }
 
 addProductWithImage(formData: FormData): Observable<Product> {
@@ -42,6 +43,6 @@ addProductWithImage(formData: FormData): Observable<Product> {
 }
 
   searchProducts(keyword: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/search?keyword=${keyword}`, { headers: this.getHeaders() });
+    return this.http.get<Product[]>(`${this.apiUrl}/search?keyword=${keyword}`);
   }
 }
