@@ -1,15 +1,12 @@
 {
   "version": 2,
-   "public": true,
+  "public": true,
   "builds": [
-    { "src": "dist/smart-sell/browser/**", "use": "@vercel/static" }
+    { "src": "dist/smart-sell/browser/**", "use": "@vercel/static-build" }
   ],
   "routes": [
     { "handle": "filesystem" },
     { "src": "/.*", "dest": "/index.html" }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -20,7 +17,7 @@
       ]
     },
     {
-      "source": "/(.*).(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)",
+      "source": "/(.*)\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
         { "key": "X-Content-Type-Options", "value": "nosniff" }
@@ -28,4 +25,3 @@
     }
   ]
 }
-
