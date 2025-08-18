@@ -1,0 +1,47 @@
+/* Navbar styles */
+.navbar {
+  border-bottom: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #333 !important;
+}
+
+.navbar-nav {
+  margin-left: auto; /* push nav items to right */
+}
+
+.nav-item {
+  margin-left: 1rem;
+}
+
+.nav-link {
+  color: #555 !important;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #000 !important;
+}
+
+.nav-link.active {
+  color: #0d6efd !important; /* Bootstrap primary blue */
+  font-weight: bold;
+}
+
+/* Page container */
+.container {
+  margin-top: 2rem;
+}
+
+/* Make navbar sticky */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
