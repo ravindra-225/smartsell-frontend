@@ -30,11 +30,23 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
-    if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe({
-        next: () => this.router.navigate(['/login']),
-        error: (err) => (this.error = 'Registration failed. Email may already be in use.'),
-      });
-    }
+  if (this.registerForm.valid) {
+    this.authService.register(this.registerForm.value).subscribe({
+      next: (res) => {
+        console.log("Register response:", res);
+
+        if (res && res.message === "User registered successfully!") {
+          this.router.navigate(['/login']);
+        } else {
+          this.error = res?.message || "Unexpected response from server.";
+        }
+      },
+      error: (err) => {
+        console.error("Register error:", err);
+        this.error = err.error?.message || "Registration failed. Please try again.";
+      }
+    });
+  }
+
   }
 }
