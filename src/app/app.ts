@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink,RouterLinkActive, BrowserModule, HttpClientModule],
+  imports: [CommonModule, RouterOutlet, RouterLink,RouterLinkActive, HttpClientModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
